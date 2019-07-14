@@ -9,5 +9,6 @@ namespace GerenciadorDeObras.DTOs
         public double Debt { get; set; }
         public double AmountPayed { get; set; }
         public double TotalDebt { get; set; }
+        public List<ConstructionDTO> Constructions { get; set; }
     }
 }

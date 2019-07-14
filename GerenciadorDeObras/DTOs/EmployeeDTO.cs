@@ -9,5 +9,6 @@ namespace GerenciadorDeObras.DTOs
         public double DailyIncome { get; set; }
         public float DaysWorked { get; set; }
         public double TotalIncome { get; set; }
+        public List<ConstructionDTO> Constructions { get; set; }
     }
 }

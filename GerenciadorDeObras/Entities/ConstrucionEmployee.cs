@@ -7,9 +7,9 @@ namespace GerenciadorDeObras.Entities
 {
     public class ConstrucionEmployee
     {
-        [ForeignKey(typeof(Employee)]
+        [ForeignKey(typeof(Employee))]
         public int EmployeeId { get; set; }
-        [ForeignKey(typeof(Construction)]
+        [ForeignKey(typeof(Construction))]
         public int ConstructionId { get; set; }
     }
 }
