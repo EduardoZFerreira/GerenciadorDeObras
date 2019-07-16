@@ -15,7 +15,7 @@ namespace GerenciadorDeObras.Services
             return new ConstructionService();
         }
 
-        public bool Create(ConstructionDTO entityDto)
+        public int Create(ConstructionDTO entityDto)
         {
             return ConstructionRepository.Build().Create(ConstructionMapper.Build().ToEntity(entityDto));
         }
@@ -30,10 +30,10 @@ namespace GerenciadorDeObras.Services
             return ConstructionRepository.Build().UpdateWithChildren(ConstructionMapper.Build().ToEntity(entityDto));
         }
 
-        public bool CreateOrUpdate(ConstructionDTO entityDto)
-        {
-            return entityDto.Id > 0 ? Update(entityDto) : Create(entityDto);
-        }
+        //public bool CreateOrUpdate(ConstructionDTO entityDto)
+        //{
+        //    return entityDto.Id > 0 ? Update(entityDto) : Create(entityDto);
+        //}
 
         public List<ConstructionDTO> GetAll()
         {

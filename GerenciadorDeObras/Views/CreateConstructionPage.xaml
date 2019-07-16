@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converterPack="clr-namespace:Xamarin.Forms.ConvertersPack;assembly=Xamarin.Forms.ConvertersPack"
+             mc:Ignorable="d"
+             x:Class="GerenciadorDeObras.Views.CreateConstructionPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converterPack:CurrencyConverter x:Key="CurrencyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Entry x:Name="Title" Placeholder="Titulo" />
+        <Editor x:Name="Desc" Placeholder="Descrição" HeightRequest="150" HorizontalOptions="FillAndExpand" />
+        <Entry x:Name="Cost" Placeholder="Custo Estimado" Keyboard="Numeric" Text="{Binding Money, Converter={StaticResource CurrencyConverter}}" />
+        <Entry x:Name="EndPrice" Placeholder="Preço Final" Keyboard="Numeric" Text="{Binding Money, Converter={StaticResource CurrencyConverter}}" />
+        <DatePicker x:Name="Deadline" />
+        <Picker Title="Selecione o cliente" x:Name="ClientsPicker" ItemDisplayBinding="{Binding Name}" />
+        <Button Text="Cadastrar" x:Name="CreateConstructionBtn" Clicked="CreateConstructionBtn_Clicked" />
+    </StackLayout>
+</ContentPage>

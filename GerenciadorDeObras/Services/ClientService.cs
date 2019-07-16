@@ -28,7 +28,7 @@ namespace GerenciadorDeObras.Services
 
         public bool UpdateWithChildren(ClientDTO entityDto)
         {
-            return ClientRepository.Build().UpdateWithChildren(ClientMapper.Build().ToEntity(entityDto));
+            return ClientRepository.Build().UpdateWithChildren(ClientMapper.Build().ToEntityWithChildren(entityDto));
         }
 
         public bool CreateOrUpdate(ClientDTO entityDto)

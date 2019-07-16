@@ -23,8 +23,23 @@ namespace GerenciadorDeObras.Mappers
                 Deadline = dto.Deadline,
                 Cost = dto.Cost,
                 EndPrice = dto.EndPrice,
-                Client = ClientMapper.Build().ToEntity(dto.Client),
-                Crew = EmployeeMapper.Build().ToEntityList(dto.Crew).ToList()
+                Client = dto.Client != null ? ClientMapper.Build().ToEntity(dto.Client) : new Client()
+            };
+            return Construction;
+        }
+
+        public Construction ToEntityWithChildren(ConstructionDTO dto)
+        {
+            Construction Construction = new Construction()
+            {
+                Id = dto.Id,
+                Title = dto.Title,
+                Desc = dto.Desc,
+                Deadline = dto.Deadline,
+                Cost = dto.Cost,
+                EndPrice = dto.EndPrice,
+                Client = dto.Client != null ? ClientMapper.Build().ToEntity(dto.Client) : new Client(),
+                Crew = dto.Crew != null ? EmployeeMapper.Build().ToEntityList(dto.Crew).ToList() : new List<Employee>()
             };
             return Construction;
         }
@@ -55,8 +70,23 @@ namespace GerenciadorDeObras.Mappers
                 Deadline = entity.Deadline,
                 Cost = entity.Cost,
                 EndPrice = entity.EndPrice,
-                Client = ClientMapper.Build().ToDto(entity.Client),
-                Crew = EmployeeMapper.Build().ToDtoList(entity.Crew).ToList()
+                Client = entity.Client != null ? ClientMapper.Build().ToDto(entity.Client) : new ClientDTO()
+            };
+            return dto;
+        }
+
+        public ConstructionDTO ToDtoWithChildren(Construction entity)
+        {
+            ConstructionDTO dto = new ConstructionDTO()
+            {
+                Id = entity.Id,
+                Title = entity.Title,
+                Desc = entity.Desc,
+                Deadline = entity.Deadline,
+                Cost = entity.Cost,
+                EndPrice = entity.EndPrice,
+                Client = entity.Client != null ? ClientMapper.Build().ToDto(entity.Client) : new ClientDTO(),
+                Crew = entity.Crew != null ? EmployeeMapper.Build().ToDtoList(entity.Crew).ToList() : new List<EmployeeDTO>()
             };
             return dto;
         }

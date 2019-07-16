@@ -10,6 +10,7 @@ namespace GerenciadorDeObras.Entities
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public DateTime DateCreate { get; set; }
+        [Ignore]
         public State State { get; set; }
     }
 }

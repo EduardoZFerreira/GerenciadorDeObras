@@ -34,6 +34,7 @@ namespace GerenciadorDeObras.Data
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
+                conn.CreateTable<Client>();
                 return conn.Table<Client>().ToList();
             }
         }
@@ -42,6 +43,7 @@ namespace GerenciadorDeObras.Data
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
+                conn.CreateTable<Client>();
                 return conn.Query<Client>("SELECT * FROM Client WHERE ID = ?", id).FirstOrDefault();
             }
         }
@@ -50,6 +52,7 @@ namespace GerenciadorDeObras.Data
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
+                conn.CreateTable<Client>();
                 return conn.GetWithChildren<Client>(id);
             }
         }

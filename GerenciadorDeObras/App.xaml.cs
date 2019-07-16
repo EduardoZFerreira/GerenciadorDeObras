@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GerenciadorDeObras.Views;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,11 +9,19 @@ namespace GerenciadorDeObras
     public partial class App : Application
     {
         public static string DB_PATH = string.Empty;
+        public static MasterDetailPage Master { get; set; }
+
+        public async static Task NavigatePage(Page page)
+        {
+            App.Master.IsPresented = false;
+            await App.Master.Detail.Navigation.PushAsync(page);
+        }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Main();
         }
 
         public App(string DB_Path)
@@ -20,7 +30,7 @@ namespace GerenciadorDeObras
 
             DB_PATH = DB_Path;
 
-            MainPage = new MainPage();
+            MainPage = new Main();
         }
 
         protected override void OnStart()

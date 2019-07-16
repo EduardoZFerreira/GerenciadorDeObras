@@ -4,13 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="GerenciadorDeObras.MainPage">
-
+             x:Class="GerenciadorDeObras.Views.Detail"
+             Title="Gerenciamento de Obras"
+             >
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Label Text="{Binding Day}" HorizontalOptions="CenterAndExpand" FontSize="Large" />
+        <Label Text="{Binding Date}" HorizontalOptions="CenterAndExpand" FontSize="Medium" />
     </StackLayout>
-
 </ContentPage>

@@ -1,9 +1,7 @@
-﻿using GerenciadorDeObras.Enums;
-using SQLite;
+﻿using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GerenciadorDeObras.Entities
 {
@@ -12,6 +10,7 @@ namespace GerenciadorDeObras.Entities
     {
         public string Title { get; set; }
         public string Desc { get; set; }
+        [ManyToOne]
         public Client Client { get; set; }
         public DateTime Deadline { get; set; }
         public double Cost { get; set; }
@@ -20,6 +19,6 @@ namespace GerenciadorDeObras.Entities
         public List<Employee> Crew { get; set; }
         [ForeignKey(typeof(Client))]
         public int ClientId { get; set; }
-        public StatusEnum Status { get; set; }
+        public string Status { get; set; }
     }
 }

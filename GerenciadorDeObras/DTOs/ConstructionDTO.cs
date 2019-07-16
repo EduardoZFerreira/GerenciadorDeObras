@@ -1,7 +1,5 @@
-﻿using GerenciadorDeObras.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GerenciadorDeObras.DTOs
 {
@@ -14,6 +12,6 @@ namespace GerenciadorDeObras.DTOs
         public double Cost { get; set; }
         public double EndPrice { get; set; }
         public List<EmployeeDTO> Crew { get; set; }
-        public StatusEnum Status { get; set; }
+        public string Status { get; set; }
     }
 }

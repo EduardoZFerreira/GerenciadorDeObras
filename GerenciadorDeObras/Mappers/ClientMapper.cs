@@ -22,7 +22,24 @@ namespace GerenciadorDeObras.Mappers
                 Address = dto.Address,
                 TotalDebt = dto.TotalDebt,
                 AmountPayed = dto.AmountPayed,
-                Constructions = ConstructionMapper.Build().ToEntityList(dto.Constructions).ToList()
+                Constructions = new List<Construction>()
+            };
+            client = client.CalculateDebt();
+            return client;
+        }
+
+        public Client ToEntityWithChildren(ClientDTO dto)
+        {
+            Client client = new Client()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Email = dto.Email,
+                Phone = dto.Phone,
+                Address = dto.Address,
+                TotalDebt = dto.TotalDebt,
+                AmountPayed = dto.AmountPayed,
+                Constructions = dto.Constructions != null ? ConstructionMapper.Build().ToEntityList(dto.Constructions).ToList() : new List<Construction>()
             };
             client = client.CalculateDebt();
             return client;
@@ -56,7 +73,24 @@ namespace GerenciadorDeObras.Mappers
                 TotalDebt = entity.TotalDebt,
                 AmountPayed = entity.AmountPayed,
                 Debt = entity.Debt,
-                Constructions = ConstructionMapper.Build().ToDtoList(entity.Constructions).ToList()
+                Constructions = new List<ConstructionDTO>()
+            };
+            return client;
+        }
+
+        public ClientDTO ToDtoWithChildren(Client entity)
+        {
+            ClientDTO client = new ClientDTO()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Email = entity.Email,
+                Phone = entity.Phone,
+                Address = entity.Address,
+                TotalDebt = entity.TotalDebt,
+                AmountPayed = entity.AmountPayed,
+                Debt = entity.Debt,
+                Constructions = entity.Constructions != null ? ConstructionMapper.Build().ToDtoList(entity.Constructions).ToList() : new List<ConstructionDTO>()
             };
             return client;
         }

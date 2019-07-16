@@ -14,12 +14,14 @@ namespace GerenciadorDeObras.Data
             return new ConstructionRepository();
         }
 
-        public bool Create(Construction obj)
+        public int Create(Construction obj)
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
-                conn.CreateTable<Construction>();
-                return conn.Insert(obj) > 0;
+                conn.CreateTable<Construction>();                
+                conn.CreateTable<ConstrucionEmployee>();
+                conn.Insert(obj);
+                return conn.ExecuteScalar<int>("SELECT MAX(Id) FROM Construction");
             }
         }
 
@@ -27,7 +29,8 @@ namespace GerenciadorDeObras.Data
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
-                conn.CreateTable<Construction>();
+                conn.CreateTable<Construction>();                
+                conn.CreateTable<ConstrucionEmployee>();
                 return conn.Delete(obj) > 0;
             }
         }
@@ -36,7 +39,20 @@ namespace GerenciadorDeObras.Data
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
-                return conn.Table<Construction>().ToList();
+                try
+                {
+                    conn.CreateTable<Construction>();                    
+                    conn.CreateTable<ConstrucionEmployee>();
+                    return conn.GetAllWithChildren<Construction>().ToList();
+                }
+                catch (Exception e)
+                {
+                    Construction c = new Construction() { State = new State().SetError(e.Message) };
+                    List<Construction> lst = new List<Construction>();
+                    lst.Add(c);
+                    return lst;
+                }
+                
             }
         }
 
@@ -44,6 +60,8 @@ namespace GerenciadorDeObras.Data
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
+                conn.CreateTable<Construction>();                
+                conn.CreateTable<ConstrucionEmployee>();
                 return conn.Query<Construction>("SELECT * FROM Construction WHERE ID = ?", id).FirstOrDefault();
             }
         }
@@ -52,6 +70,8 @@ namespace GerenciadorDeObras.Data
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
+                conn.CreateTable<Construction>();                
+                conn.CreateTable<ConstrucionEmployee>();
                 return conn.GetWithChildren<Construction>(id);
             }
         }
@@ -60,7 +80,8 @@ namespace GerenciadorDeObras.Data
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
-                conn.CreateTable<Construction>();
+                conn.CreateTable<Construction>();                
+                conn.CreateTable<ConstrucionEmployee>();
                 return conn.Update(obj) > 0;
             }
         }
@@ -69,7 +90,8 @@ namespace GerenciadorDeObras.Data
         {
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DB_PATH))
             {
-                conn.CreateTable<Construction>();
+                conn.CreateTable<Construction>();                
+                conn.CreateTable<ConstrucionEmployee>();
                 conn.UpdateWithChildren(obj);
                 return true;
             }
