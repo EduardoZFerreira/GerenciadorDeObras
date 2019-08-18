@@ -9,7 +9,7 @@
         <ToolbarItem Text="Cadastrar nova obra" Activated="ToolbarItem_Activated"/>
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <ListView x:Name="ConstructionsListView">
+        <ListView x:Name="ConstructionsListView" ItemSelected="ConstructionsListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

@@ -26,5 +26,12 @@ namespace GerenciadorDeObras.Views
         {
             await App.NavigatePage(new CreateEmployeePage());
         }
+
+        private void EmployeesListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            EmployeeDTO obj = (EmployeeDTO)EmployeesListView.SelectedItem;
+            ((ListView)sender).SelectedItem = null;
+            if (obj != null) Navigation.PushAsync(new EmployeePage(obj));
+        }
     }
 }

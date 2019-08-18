@@ -9,7 +9,7 @@
         <ToolbarItem Text="Cadastrar Novo Funcionário" Activated="ToolbarItem_Activated" />
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <ListView x:Name="EmployeesListView">
+        <ListView x:Name="EmployeesListView" ItemSelected="EmployeesListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

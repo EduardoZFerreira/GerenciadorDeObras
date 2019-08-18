@@ -23,9 +23,10 @@ namespace GerenciadorDeObras.Mappers
                 Phone = dto.Phone,
                 Address = dto.Address,
                 DailyIncome = dto.DailyIncome,
-                DaysWorked = dto.DaysWorked                
+                DaysWorked = dto.DaysWorked,
+                TotalIncome = dto.TotalIncome
             };
-            Employee = Employee.CalculateIncome();
+            if(dto.TotalIncome == 0) Employee = Employee.CalculateIncome();
             return Employee;
         }
 
@@ -64,6 +65,7 @@ namespace GerenciadorDeObras.Mappers
         }
         public EmployeeDTO ToDto(Employee entity)
         {
+            if(entity.TotalIncome == 0) entity = entity.CalculateIncome();
             EmployeeDTO employee = new EmployeeDTO()
             {
                 Id = entity.Id,
@@ -80,6 +82,7 @@ namespace GerenciadorDeObras.Mappers
 
         public EmployeeDTO ToDtoWithChildren(Employee entity)
         {
+            entity = entity.CalculateIncome();
             EmployeeDTO employee = new EmployeeDTO()
             {
                 Id = entity.Id,

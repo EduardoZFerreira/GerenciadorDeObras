@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converterPack="clr-namespace:Xamarin.Forms.ConvertersPack;assembly=Xamarin.Forms.ConvertersPack"
+             mc:Ignorable="d"
+             x:Class="GerenciadorDeObras.Views.EmployeePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converterPack:CurrencyConverter x:Key="CurrencyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+            <Label Text="{Binding Name}" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Dias Trabalhados: " />
+                <Label Text="{Binding DaysWorked}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Pagamento por dia: " />
+            <Label Text="{Binding DailyIncome, Converter={StaticResource CurrencyConverter}}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Valor a receber: " />
+            <Label Text="{Binding TotalIncome, Converter={StaticResource CurrencyConverter}}"  />
+            </StackLayout>
+            <Button Text="Cadastrar Pagamento completo" Clicked="PagamentoCompleto" />
+            <Button Text="Cadastrar Pagamento parcial" x:Name="PartialPaymentButton" Clicked="PagamentoParcial" />
+            <Entry Placeholder="R$" x:Name="PaymentEntry" Keyboard="Numeric" IsVisible="False" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Salvar" IsVisible="False" x:Name="SavePaymentButton" Clicked="DefinirPagamentoParcial" />
+                <Button Text="Cancelar" IsVisible="False" x:Name="CancelPaymentButton" Clicked="PagamentoParcial" />
+            </StackLayout>
+        </StackLayout>
+</ContentPage>

@@ -11,7 +11,7 @@ namespace GerenciadorDeObras.Entities
     {
         public double DailyIncome { get; set; }
         public float DaysWorked { get; set; }
-        public double TotalIncome { get; private set; }
+        public double TotalIncome { get; set; }
         public float LastDaysWorked { get; set; }
         public double LastIncome { get; set; }
         [ManyToMany(typeof(ConstrucionEmployee))]

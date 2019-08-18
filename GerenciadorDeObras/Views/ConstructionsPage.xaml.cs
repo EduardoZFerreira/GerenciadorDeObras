@@ -26,5 +26,12 @@ namespace GerenciadorDeObras.Views
         {
             await App.NavigatePage(new CreateConstructionPage());
         }
+
+        private void ConstructionsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ConstructionDTO obj = (ConstructionDTO)ConstructionsListView.SelectedItem;
+            ((ListView)sender).SelectedItem = null;
+            if (obj != null) Navigation.PushAsync(new ConstructionPage(obj.Id));
+        }
     }
 }

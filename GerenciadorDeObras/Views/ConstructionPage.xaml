@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GerenciadorDeObras.Views.ConstructionPage">
+    <StackLayout>
+        <StackLayout>
+            <ListView x:Name="CurrentEmployeesListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}" />
+                                <Button Text="+ Meio Dia" Clicked="AddHalfDay" ClassId="{Binding Id}" />
+                                <Button Text="+ Dia" Clicked="AddDay" ClassId="{Binding Id}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <StackLayout>
+            <Picker Title="Adicionar membros à equipe" x:Name="EmployeesPicker" SelectedIndexChanged="EmployeesPicker_SelectedIndexChanged" ItemDisplayBinding="{Binding Name}" />
+        </StackLayout>
+     </StackLayout>
+</ContentPage>
